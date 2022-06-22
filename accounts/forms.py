@@ -34,9 +34,7 @@ class AccountRegisterForm(forms.ModelForm):
         if pwd1 and pwd2 and pwd1 != pwd2:
             raise ValidationError(
                 {
-                    'password2': ValidationError(
-                                    'Password not equals',
-                                    code='password_mismatch')
+                    'password2': ValidationError('Password not equals', code='password_mismatch')
                 }
             )
 
@@ -75,3 +73,7 @@ class AccountUpdateForm(UserChangeForm):
             'city',
             'avatar',
         ]
+
+        widgets = {
+            'birthday': forms.DateInput(attrs={'type': 'date'})
+        }

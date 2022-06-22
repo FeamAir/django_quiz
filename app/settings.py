@@ -33,8 +33,11 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
 
+
+
     'accounts.apps.AccountsConfig',
     'quiz.apps.QuizConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -138,6 +141,9 @@ INTERNAL_IPS = [
     '127.0.0.1',
     'localhost',
 ]
+
+SITE_ID = 1
+
 
 EMAIL_PORT = 1025
 
