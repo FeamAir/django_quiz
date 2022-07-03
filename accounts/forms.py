@@ -29,8 +29,8 @@ class AccountRegisterForm(forms.ModelForm):
 
     def clean(self):
         super().clean()
-        pwd1 = self.cleaned_data['password1']
-        pwd2 = self.cleaned_data['password2']
+        pwd1 = self.cleaned_data.get('password1')
+        pwd2 = self.cleaned_data.get('password2')
         if pwd1 and pwd2 and pwd1 != pwd2:
             raise ValidationError(
                 {

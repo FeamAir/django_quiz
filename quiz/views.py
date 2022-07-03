@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -154,7 +154,9 @@ class ExamResultUpdateView(LoginRequiredMixin, UpdateView):
         )
 
 
-class ExamResultDeleteView(LoginRequiredMixin, DeleteView):
+class ExamResultDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    permission_required = ['accounts.view_statistics']
+
     def get(self, request, *args, **kwargs):
         uuid = kwargs.get('uuid')
         res_uuid = kwargs.get('res_uuid')
