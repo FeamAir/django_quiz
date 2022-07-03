@@ -1,9 +1,8 @@
 # from unittest import skip
 
-from django.contrib.auth.models import Group
-
 from accounts.models import CustomUser
 
+from django.contrib.auth.models import Group
 from django.core.signing import Signer
 from django.test import Client
 from django.test import TestCase
@@ -61,7 +60,8 @@ class AccountTests(TestCase):
         self.assertEqual(user.username, self.data['username'])
 
         signer = Signer()
-        response = self.client.get('http://localhost' + reverse('accounts:register_activate', kwargs={'sign': signer.sign(user.username)}))
+        response = self.client.get(
+            'http://localhost' + reverse('accounts:register_activate', kwargs={'sign': signer.sign(user.username)}))
         self.assertEqual(response.status_code, 200)
 
         user.refresh_from_db()

@@ -19,9 +19,7 @@ class CustomUser(AbstractUser):
         return self.username
 
 
-@receiver(post_save, sender=CustomUser )
+@receiver(post_save, sender=CustomUser)
 def move_user_to_group(sender, instance, created, **kwargs):
     if created:
         instance.groups.add(Group.objects.get(name='Users'))
-
-
